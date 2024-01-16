@@ -55,6 +55,8 @@ void my_mlx_put_pixels(t_img *img, int x, int y, int color)
 //         }
 //     }
 // }
+
+
 void plotLineHigh(int x0, int x1, int y0, int y1, t_fdf *data, int color) {
     int dx = x1 - x0;
     int dy = y1 - y0;
@@ -95,10 +97,8 @@ void draw_projects(t_fdf *data, t_map **matrix)
         {
             plotLineHigh(matrix[y][x].x , matrix[y][x + 1].x, matrix[y][x].y, matrix[y][x + 1].y, data,matrix[y][x].color);
             // brehensman_algo(matrix[y][x].x , matrix[y + 1][x].x, matrix[y][x].y, matrix[y + 1][x].y, data,matrix[y + 1][x].color);
-            printf("x + 1 %d\n", x+ 1);
             x++;
         }
-        printf("y + 1 %d\n", y+ 1);
         y++;
     }
 }
