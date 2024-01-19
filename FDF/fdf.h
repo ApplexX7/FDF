@@ -6,15 +6,15 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:32:14 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/16 10:52:59 by mohilali         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:56:03 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#define WIDTH 1920
-#define LENGHT 1080
+#define WIDTH 1024
+#define LENGHT 1024
 #define BUFFER_SIZE 500
 
 #include <limits.h>
@@ -28,6 +28,21 @@
 #include <errno.h>
 
 
+typedef struct s_RGB
+{
+	unsigned int r;
+	unsigned int b;
+	unsigned g;
+}	t_RGB;
+
+
+typedef struct s_bren
+{
+	int sx;
+	int sy;
+} t_bren;
+
+
 typedef struct  s_img
 {
 	void *img;
@@ -35,7 +50,6 @@ typedef struct  s_img
 	int  bpp;
 	int line_len;
 	int endian;
-
 } t_img;
 
 typedef struct s_map
@@ -48,6 +62,8 @@ typedef struct s_map
 	unsigned int color;
 }	t_map;
 
+
+
 typedef struct s_fdf
 {
 	void *mlx_ptr;
@@ -55,9 +71,16 @@ typedef struct s_fdf
 	t_img *img;
 	t_map *map;
 	t_map **matrix;
+	int scal;
 		
 } t_fdf;
-
+typedef struct s_point
+{
+	double x;
+	double y;
+	double z;
+	unsigned int color;
+}	t_point;
 // typedef struct s_size
 // {
 // 	int x;

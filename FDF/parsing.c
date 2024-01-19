@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 12:31:05 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/16 11:19:29 by mohilali         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:04:54 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void check_len_line(size_t len, int fd, char *str)
 	while (str)
 	{
 		arr = ft_split(str, ' ');
+		if (!arr)
+			free(str), exit(0);
 		if (len_withd(arr) < len)
 		{
 			write(2, "Found line lenght Error!\n", 25);
@@ -71,8 +73,6 @@ int ft_get_with(char *av)
 	str = get_next_line(fd);
 	if (!str)
 		(perror("not data found!"), exit(0));
-	if (!str)
-		(perror("found error line!!"),exit(0));
 	par = ft_split(str, ' ');
 	if (!par)
 		close(fd), exit(0);
@@ -80,6 +80,7 @@ int ft_get_with(char *av)
 	check_len_line(len, fd, str);
 	if (close(fd) == -1)
 		(perror(strerror(errno)), exit(0));
+	ft_free(par);
 	return (len);
 }
 int ft_get_lenght(char *av)
@@ -123,6 +124,8 @@ t_map **get_coordonnes(char *av, int len, int with)
 	if (fd == -1)
 		exit(0);
 	matrix = malloc(sizeof(t_map*) * len + 1);
+	if (!matrix)
+		exit(0);
 	s = get_next_line(fd);
 	str = ft_split(s, ' ');
 	while (i < len && str != NULL)
@@ -143,7 +146,10 @@ t_map **get_coordonnes(char *av, int len, int with)
 			else
 			{
 				matrix[i][j].z = ft_atoi(str[j]);
-				matrix[i][j].color  = 255;
+				if (matrix[i][j].z > 0)
+					matrix[i][j].color  = 0x80ffdb;
+				else
+				matrix[i][j].color = 0x00a8e8;
 			}
 			j++;
 		}
@@ -154,6 +160,7 @@ t_map **get_coordonnes(char *av, int len, int with)
 		i++;
 	}
 	ft_free(str);
+	free(s);
 	close(fd);
 	return (matrix);
 }
@@ -164,17 +171,5 @@ t_map **handling_parsing(char *av, t_fdf *env)
 	env->map->lenght = ft_get_lenght(av);
 	env->map->with = ft_get_with(av);
 	matrix = get_coordonnes(av, env->map->lenght, env->map->with);
-	// int i = 0, j;
-	// while (i < env->map->lenght)
-	// {
-	// 	j = 0;
-	// 	while (j < env->map->with)
-	// 	{
-	// 		printf("[[martix(%d, %d) : x = %f y = %f z = %f color = %x]]\n",j, i, matrix[i][j].x, matrix[i][j].y, matrix[i][j].z, matrix[i][j].color);
-	// 		j++;
-	// 	}
-	// 	printf("\n\n");
-	// 	i++;
-	// }
 	return (matrix);
 }
