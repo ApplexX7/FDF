@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:35:22 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/19 17:15:43 by mohilali         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:51:43 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 void destroy_all(t_fdf *env)
 {
     mlx_destroy_window(env->mlx_ptr, env->mlx_win);
+    free(env->mlx_win);
+    exit(0);
 }
 
 t_fdf *ft_init(char *av)
@@ -25,23 +27,23 @@ t_fdf *ft_init(char *av)
     char *titre;
     
     env = malloc(sizeof(t_fdf));
-    img= malloc(sizeof(t_img));
+    img = malloc(sizeof(t_img));
     titre = ft_strjoin("FDF - ", av);
     if (!titre)
         exit(0);
     env->mlx_ptr = mlx_init();
     if (!env->mlx_ptr)
-        free(titre), exit(0);
+        free(titre), destroy_all(env);;
     env->mlx_win = mlx_new_window(env->mlx_ptr, WIDTH, LENGHT, titre);
     if (!env->mlx_win)
-        free(titre), exit(0);
+        free(titre), destroy_all(env);;
     free(titre);
     img->img = mlx_new_image(&env->mlx_ptr, WIDTH, LENGHT);
     if (!env->img->img)
-        exit(0);
+        destroy_all(env);
     img->addr = mlx_get_data_addr(img->img, &img->bpp,&img->line_len, &img->endian);
     if (!env->img->addr)
-        exit(0);
+        destroy_all(env);
     env->img = img;
     return (env);
 }
@@ -78,7 +80,8 @@ int key_press(int key_press, t_fdf *env)
     {
         mlx_destroy_image(env->mlx_ptr, env->img->img);
         mlx_destroy_window(env->mlx_ptr, env->mlx_win);
-        free(env->mlx_ptr);
+        free(env->img);
+        free(env->map);
         free(env);
         env->mlx_ptr = NULL;
         exit(0);
