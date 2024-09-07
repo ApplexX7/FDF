@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils_tree.c                                   :+:      :+:    :+:   */
+/*   fdf_utils_tree_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:17:15 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/19 19:01:58 by mohilali         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:23:56 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
-static int ft_toupper(int c)
+static int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (c - 32);
 	return (c);
 }
 
-static int value_in_base(char c, const char *base)
+static int	value_in_base(char c, const char *base)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (base[i])
 	{
 		if (c == base[i])
-			break;
+			break ;
 		i++;
 	}
 	if (base[i] != '\0')
-		return(i);
+		return (i);
 	else
 		return (-1);
 }
 
-static int check_base(const char *s)
+static int	check_base(const char *s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -63,12 +63,13 @@ static int check_base(const char *s)
 	return (0);
 }
 
-unsigned int atoi_base(const char *s, const char *base)
+unsigned int	atoi_base(const char *s, const char *base)
 {
-	int nbr;
-	int i;
-	char *str = "0x\0";
+	int		nbr;
+	int		i;
+	char	*str;
 
+	str = "0x\0";
 	i = 0;
 	nbr = 0;
 	if (!check_base(base))
@@ -80,9 +81,10 @@ unsigned int atoi_base(const char *s, const char *base)
 		while (s[i] != '\0')
 		{
 			if (value_in_base(ft_toupper(s[i]), base) >= 0)
-				nbr = nbr * ft_strlen(base) + value_in_base(ft_toupper(s[i]), base);
+				nbr = nbr * ft_strlen(base)
+					+ value_in_base(ft_toupper(s[i]), base);
 			else
-				break;
+				break ;
 			i++;
 		}
 	}

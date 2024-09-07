@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_help.c                                         :+:      :+:    :+:   */
+/*   fdf_utils_four_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:41:21 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/19 19:03:04 by mohilali         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:23:44 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 char	*ft_strdup(const char *s1)
 {
@@ -57,16 +57,17 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	res[i] = '\0';
 	return (res);
 }
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	while (n-- && !s2 && !s2)
 	{
 		if (*s1 != *s2)
 			return (*s1 - *s2);
 		s1++;
-		s2++;	
+		s2++;
 	}
-    return (0);
+	return (0);
 }
 
 int	ft_atoi(const char *str)

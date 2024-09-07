@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils_two.c                                    :+:      :+:    :+:   */
+/*   fdf_utils_two_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:48:41 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/09 13:22:55 by mohilali         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:24:03 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 static char	**free_string(char **s, int i)
 {
@@ -94,6 +94,7 @@ char	**ft_split(char const *s, char c)
 	unsigned int	nbr;
 	char			t;
 	char			n;
+
 	t = '\t';
 	n = '\n';
 	if (s == NULL)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils.c                                        :+:      :+:    :+:   */
+/*   fdf_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:16:01 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/10 13:32:43 by mohilali         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:23:36 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
@@ -38,7 +38,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 char	*ft_strchr(char *s, int c)
 {
-	unsigned int	i;
+	unsigned int			i;
 	unsigned char			x;
 
 	if (!s)
@@ -56,9 +56,9 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	if (!s)
@@ -66,4 +66,20 @@ size_t ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+void	ft_free(char **arr)
+{
+	int	len;
+
+	len = 0;
+	if (!arr)
+		return ;
+	while (arr[len] != NULL)
+	{
+		free(arr[len]);
+		len++;
+	}
+	free(arr);
+	arr = NULL;
 }
