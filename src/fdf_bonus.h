@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:35:48 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/24 13:13:18 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:56:05 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include <stdio.h>
 # include <errno.h>
+# include "fdf_bonus_key.h"
 
 typedef struct s_bren
 {

@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:35:22 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/24 11:17:25 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:07:56 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 		env = ft_iniat_map(env);
 		env->map = malloc(sizeof(t_map));
 		env = handling_parsing(av[1], env);
-		mlx_hook(env->mlx_win, 2, 0, key_boom, env);
+		mlx_key_hook(env->mlx_win, key_boom, env);
 		mlx_hook(env->mlx_win, 17, 0, kill_win, env);
 		draw_projects(env, env->matrix);
 		mlx_loop_hook(env->mlx_ptr, loop_onit, env);

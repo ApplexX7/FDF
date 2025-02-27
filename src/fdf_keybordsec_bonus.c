@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:54:21 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/24 10:23:03 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:23:58 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,27 @@
 
 void	ft_chang_altitude(int key_press, t_fdf *env)
 {
-	if (key_press == 0)
+	if (key_press == UP_W_KEY)
 		env->change_altitude += 1;
-	if (key_press == 1)
+	if (key_press == DOWN_S_KEY)
 		env->change_altitude -= 1;
 }
 
 int	key_boom(int key_press, t_fdf *env)
 {
-	if (key_press == 82)
+	printf("%d\n", key_press);
+	if (key_press == ZERO_KEY)
 		ft_iniat_map(env);
-	if (key_press == 53)
+	if (key_press == ESC_KEY)
 		free_all(env);
-	if (key_press == 49)
+	if (key_press == SPACE_KEY)
 	{
 		if (env->apple == 0)
 			env->apple = 1;
 		else
 			env->apple = 0;
 	}
-	if (key_press == 35)
+	if (key_press == PRJ_KEY)
 	{
 		if (env->para == 0)
 		{
@@ -51,17 +52,18 @@ int	key_boom(int key_press, t_fdf *env)
 
 void	ft_rotation_key(int key_press, t_fdf *env)
 {
-	if (key_press == 18)
+
+	if (key_press == RRX_KEY)
 		env->fdf.x_rot += 0.01;
-	if (key_press == 19)
+	if (key_press == RLX_KEY)
 		env->fdf.x_rot -= 0.01;
-	if (key_press == 20)
+	if (key_press == RRY_KEY)
 		env->fdf.y_rot += 0.01;
-	if (key_press == 21)
+	if (key_press == RLY_KEY)
 		env->fdf.y_rot -= 0.01;
-	if (key_press == 22)
+	if (key_press == RLZ_KEY)
 		env->fdf.z_rot += 0.01;
-	if (key_press == 23)
+	if (key_press == RRZ_KEY)
 		env->fdf.z_rot -= 0.01;
 }
 

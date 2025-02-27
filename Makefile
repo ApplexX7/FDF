@@ -6,7 +6,7 @@
 #    By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 17:15:20 by mohilali          #+#    #+#              #
-#    Updated: 2024/09/07 11:12:31 by mohilali         ###   ########.fr        #
+#    Updated: 2025/02/27 15:45:40 by mohilali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,17 @@ RM = rm -f
 NAME = FDF
 
 HEADER_NAME = src/fdf_bonus.h
+MLXFLAGS = -Lminilibx-linux -lmlx -lX11 -lXext -lm
+MLX_LIB = ./minilibx-linux
+
 
 all : $(NAME)
 
 %.o : %.c $(HEADER_NAME)
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJCT)
-	$(CC) $(OBJCT) -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJCT) $(MLXFLAGS) -o $(NAME)
 
 clean :
 	$(RM) $(OBJCT)

@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:36:45 by mohilali          #+#    #+#             */
-/*   Updated: 2024/01/24 10:22:40 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:42:49 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ t_fdf	*ft_init(t_fdf *env)
 			"Fil de Fer");
 	if (!env->mlx_win)
 		destroy_all(env);
-	img->img = mlx_new_image(&env->mlx_ptr, WIDTH, LENGHT);
-	if (!env->img->img)
+	img->img = mlx_new_image(env->mlx_ptr, WIDTH, LENGHT);
+	if (!img->img)
 		destroy_all(env);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp,
 			&img->line_len, &img->endian);
-	if (!env->img->addr)
+	if (!img->addr)
 		destroy_all(env);
 	env->img = img;
 	return (env);
