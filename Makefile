@@ -1,47 +1,64 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/05 17:15:20 by mohilali          #+#    #+#              #
-#    Updated: 2025/02/27 15:45:40 by mohilali         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+OS := $(shell uname)
 
-SRC = src/fdf_bonus.c src/fdf_parsing_bonus.c src/fdf_utils_one_bonus.c \
-	src/fdf_utils_two_bonus.c src/fdf_utils_bonus.c src/fdf_utils_tree_bonus.c \
-	src/fdf_grad_color_bonus.c src/fdf_brehensman_bonus.c src/fdf_draw_bonus.c \
-	src/fdf_parsing_sec_bonus.c src/fdf_utils_four_bonus.c src/fdf_rotation_bonus.c \
-	src/fdf_isoproject_bonus.c src/fdf_centre_bonus.c src/fdf_keybord_bonus.c \
-	src/fdf_iniate_bonus.c src/fdf_keybordsec_bonus.c src/fdf_menu_bonus.c
+ifeq ($(OS), Darwin)  # macOS
+	MLXFLAGS := -lmlx -framework OpenGL -framework AppKit
+	INCLUDE_DIR := ./MacOs_Include
+	MLX_LIB := ./minilibx_macos
+	CFLAGS += -D OS_MAC
+else  # Linux
+	MLXFLAGS := -Lminilibx-linux -lmlx -lX11 -lXext -lm
+	INCLUDE_DIR := ./Linux_Include
+	MLX_LIB := ./minilibx-linux
+	CFLAGS += -D OS_LINUX
+endif
 
-OBJCT = ${SRC:.c=.o}
+SRC_DIR = src/
+
+SRC = fdf.c fdf_parsing.c fdf_utils_one.c \
+	fdf_utils_two.c fdf_utils.c fdf_utils_tree.c \
+	fdf_grad_color.c fdf_brehensman.c fdf_draw.c \
+	fdf_parsing_sec.c fdf_utils_four.c fdf_rotation.c \
+	fdf_isoproject.c fdf_centre.c fdf_keybord.c \
+	fdf_iniate.c fdf_keybordsec.c fdf_menu.c
 
 CC = cc 
 CFLAGS = -Wall -Werror -Wextra
+BUILD_DIR = ./build
+OBJCT = $(SRC:%.c=$(BUILD_DIR)/%.o)
 
-RM = rm -f
+RM = rm -rf
 NAME = FDF
 
-HEADER_NAME = src/fdf_bonus.h
-MLXFLAGS = -Lminilibx-linux -lmlx -lX11 -lXext -lm
-MLX_LIB = ./minilibx-linux
+HEADER_NAME = ./$(INCLUDE_DIR)/fdf.h
 
+all : Fdf $(NAME)
 
-all : $(NAME)
-
-%.o : %.c $(HEADER_NAME)
-	$(CC) $(CFLAGS) -c $< -o $@
+Fdf:
+	@[ -d "$(BUILD_DIR)" ] || mkdir "$(BUILD_DIR)"
+	@echo "\033[1;35m"  # Changed to magenta for text art
+	@echo "███████╗██████╗ ███████╗"
+	@echo "██╔════╝██╔══██╗██╔════╝"
+	@echo "█████╗  ██║  ██║█████╗  "
+	@echo "██╔══╝  ██║  ██║██╔══╝  "
+	@echo "██║     ██████╔╝██║     "
+	@echo "╚═╝     ╚═════╝ ╚═╝     "
+	@echo "\033[0m"  # Reset to default color
+	@echo "\033[0;34mCompiling \033[1;34mminilibx"
+	@$(MAKE) -C $(MLX_LIB)
 
 $(NAME) : $(OBJCT)
-	$(CC) $(CFLAGS) $(OBJCT) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJCT) $(MLXFLAGS) -o $(NAME)
+	@echo "\033[1;34m$(NAME) \033[0;34mhas been compiled"
+
+$(BUILD_DIR)/%.o : $(SRC_DIR)%.c $(HEADER_NAME)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	$(RM) $(OBJCT)
+	@$(RM) $(OBJCT)
+	@$(MAKE) clean -C $(MLX_LIB)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME) $(BUILD_DIR)
+	@echo "\033[1;34m$(NAME) \033[0;34mFDF has been cleaned"
 
-re : all clean
+re : fclean all
