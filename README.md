@@ -1,4 +1,4 @@
-# FDF - 42 Wireframe Viewer
+# FDF - Wireframe Viewer
 
 <img width="1228" alt="Screen Shot 2024-09-07 at 11 03 18 AM" src="https://github.com/user-attachments/assets/ec1ac924-2c5f-4af9-8002-57f49e06f57f">
 
@@ -46,12 +46,19 @@ ESC	Quit program
 ## Project Structure
 
 FDF/
+
 ├── includes/       - Header files
+
 ├── src/            - Source code
+
 │   ├── parsing/    - Map parsing logic
+
 │   ├── rendering/  - Graphics operations
+
 │   └── utils/      - Helper functions
+
 ├── maps/           - Sample maps
+
 └── minilibx-linux/ - Graphics library
 
 
