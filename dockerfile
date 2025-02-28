@@ -7,6 +7,6 @@ RUN git clone --recurse-submodules https://github.com/ApplexX7/FDF.git
 
 WORKDIR /home/app/FDF
 
-# RUN make all
+RUN make all
 
-# CMD ["sh", "-c", "./FDF maps/42.fdf; exec sh"]
+CMD ["sh", "-c", "./FDF maps/42.fdf; exec sh"]

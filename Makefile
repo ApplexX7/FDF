@@ -22,7 +22,7 @@ SRC = fdf.c fdf_parsing.c fdf_utils_one.c \
 	fdf_iniate.c fdf_keybordsec.c fdf_menu.c
 
 CC = cc 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra
 BUILD_DIR = ./build
 OBJCT = $(SRC:%.c=$(BUILD_DIR)/%.o)
 
