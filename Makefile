@@ -70,8 +70,8 @@ build-docker:
 
 run-docker: build-docker
 	@docker run -it --rm \
-		-e DISPLAY=$(DISPLAY) \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		# -e DISPLAY=$(DISPLAY) \
+		# -v /tmp/.X11-unix:/tmp/.X11-unix \
 		$(DOCKER_IMAGE)
 
 .PHONY: all clean fclean re lib build-docker run-docker
