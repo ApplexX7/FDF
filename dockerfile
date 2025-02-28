@@ -1,17 +1,12 @@
-FROM ubuntu:20.04
+FROM alpine:3.21.2
+RUN  apk add musl-dev git gcc make xorg-server libxext-dev libbsd-dev
 
-RUN apt-get update --fix-missing && apt-get upgrade -y
+WORKDIR /home/app
 
-RUN  apt -y  install libx11-dev \
-    libxext-dev \
-    libxrender-dev \
-    build-essential \
-    libbsd-dev
+RUN git clone https://github.com/ApplexX7/FDF.git
 
-WORKDIR /Fdf
+WORKDIR /home/app/FDF
 
-COPY . /Fdf/
+RUN make
 
-RUN make all
-
-CMD ["./FDF", "./map/42.fdf"]
+CMD ["sh", "-c", "./FDF maps/42.fdf; exec sh"]

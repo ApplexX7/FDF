@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:36:45 by mohilali          #+#    #+#             */
-/*   Updated: 2025/02/27 17:01:36 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:40:44 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	free_all(t_fdf *env)
 	mlx_destroy_window(env->mlx_ptr, env->mlx_win);
 	free(env->img);
 	free(env->map);
-	free(env);
 	env->mlx_ptr = NULL;
+	free(env);
 	exit(0);
 }

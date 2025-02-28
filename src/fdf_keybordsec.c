@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:54:21 by mohilali          #+#    #+#             */
-/*   Updated: 2025/02/27 17:01:36 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:06:23 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_chang_altitude(int key_press, t_fdf *env)
 
 int	key_boom(int key_press, t_fdf *env)
 {
-	printf("%d\n", key_press);
 	if (key_press == ZERO_KEY)
 		ft_iniat_map(env);
 	if (key_press == ESC_KEY)

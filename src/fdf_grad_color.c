@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:52:50 by mohilali          #+#    #+#             */
-/*   Updated: 2025/02/27 17:01:36 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:00:40 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ static unsigned int	get_color(int c1, int c2, double per)
 }
 
 unsigned int	*gradiant_color(unsigned int color1, unsigned int color2,
-	int nbr)
+	int nbr, t_fdf *data)
 {
 	unsigned int	*colr;
 	int				i;
 	int				j;
 	double			per;
-
+	
+	if (nbr == 0)
+		nbr = 10;
 	colr = malloc(sizeof(unsigned int) * nbr);
 	if (!colr)
 		return (0);
@@ -49,6 +51,7 @@ unsigned int	*gradiant_color(unsigned int color1, unsigned int color2,
 		j++;
 		i++;
 	}
+	data->colornbr = nbr;
 	return (colr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:55:39 by mohilali          #+#    #+#             */
-/*   Updated: 2025/02/27 17:01:36 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:03:40 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	brehensman_draw(t_fdf *data, t_point p1, t_point p2,
 	data->brem.err = (int)(data->brem.dx - data->brem.dy);
 	while (1)
 	{
+		if (j >= data->colornbr)
+			j = 0;
 		my_mlx_put_pixels(data->img, (int)p1.x, (int)p1.y, color[j]);
 		if ((int)p1.x == (int)p2.x && (int)p1.y == (int)p2.y)
 			break ;
@@ -66,9 +68,11 @@ void	brehensman_algo(t_point p1, t_point p2, t_fdf *data)
 	data->brem.dy = ft_abs((int)p2.y - (int)p1.y);
 	brehensman(p1, p2, data);
 	if (data->brem.dx > data->brem.dy)
-		color = gradiant_color(p1.color, p2.color, data->brem.dx);
+		color = gradiant_color(p1.color, p2.color, data->brem.dx, data);
 	else
-		color = gradiant_color(p1.color, p2.color, data->brem.dy);
+		color = gradiant_color(p1.color, p2.color, data->brem.dy, data);
+	if (!color)
+		exit(0);
 	brehensman_draw(data, p1, p2, color);
 	free(color);
 }

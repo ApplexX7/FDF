@@ -6,7 +6,7 @@
 /*   By: mohilali <mohilali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:32:26 by mohilali          #+#    #+#             */
-/*   Updated: 2025/02/27 17:01:36 by mohilali         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:42:24 by mohilali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_zooming(int key_press, t_fdf *env)
 	if (key_press == COLOR_C_KEY)
 		env->change_color += 1000;
 	if (key_press == COLOR_V_KEY)
-		env->change_color -=1000;
+		env->change_color += 200;
 }
 
 void	ft_translate(int key_press, t_fdf *env)

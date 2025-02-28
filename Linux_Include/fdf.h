@@ -99,6 +99,7 @@ typedef struct s_fdf
 	int				zoom;
 	int				scal;
 	t_con			fdf;
+	int				colornbr;
 	int				key_pro;
 	int				para;
 	int				apple;
@@ -125,7 +126,7 @@ void			ft_free(char **arr);
 /*draw map*/
 t_fdf			*ft_iniat_map(t_fdf *env);
 unsigned int	*gradiant_color(unsigned int color1, unsigned int color2,
-					int nbr);
+					int nbr, t_fdf *data);
 void			brehensman_algo(t_point p1, t_point p2, t_fdf *data);
 t_fdf			*ft_isometric_projection(t_fdf *data);
 t_fdf			*ft_xrotation(t_fdf *data);
