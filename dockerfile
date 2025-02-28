@@ -3,7 +3,7 @@ RUN  apk add musl-dev git gcc make xorg-server libxext-dev libbsd-dev
 
 WORKDIR /home/app
 
-RUN git clone https://github.com/ApplexX7/FDF.git
+RUN RUN git clone --recurse-submodules https://github.com/ApplexX7/FDF.git
 
 WORKDIR /home/app/FDF
 
