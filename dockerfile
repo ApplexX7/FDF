@@ -33,4 +33,4 @@ ENV LDFLAGS="-no-pie"
 # Build the project
 RUN make all
 
-CMD ["sh", "-c", "./FDF maps/42.fdf; exec sh"]
+CMD ["sh", "-c", "./FDF map/42.fdf; exec sh"]
